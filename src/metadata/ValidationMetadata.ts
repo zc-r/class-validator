@@ -69,6 +69,11 @@ export class ValidationMetadata {
    */
   validationTypeOptions: any;
 
+  /**
+   * 注解传入的参数条件
+   */
+  arguments?: any[];
+
   // -------------------------------------------------------------------------
   // Constructor
   // -------------------------------------------------------------------------
@@ -80,6 +85,7 @@ export class ValidationMetadata {
     this.propertyName = args.propertyName;
     this.constraints = args?.constraints;
     this.constraintCls = args.constraintCls;
+    this.arguments = args?.constraints;
     this.validationTypeOptions = args.validationTypeOptions;
     if (args.validationOptions) {
       this.message = args.validationOptions.message;

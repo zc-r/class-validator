@@ -27,4 +27,9 @@ export interface ValidationArguments {
    * Name of the object's property being validated.
    */
   property: string;
+
+  /**
+   * 注解传入的参数条件
+   */
+  arguments?: any[];
 }

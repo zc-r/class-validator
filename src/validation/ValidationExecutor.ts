@@ -88,6 +88,8 @@ export class ValidationExecutor {
       return;
     }
 
+
+
     if (this.validatorOptions && this.validatorOptions.whitelist)
       this.whitelist(object, groupedMetadatas, validationErrors);
 
@@ -238,6 +240,7 @@ export class ValidationExecutor {
     validationError.property = propertyName;
     validationError.children = [];
     validationError.constraints = {};
+    validationError.arguments = {};
 
     return validationError;
   }
@@ -265,6 +268,7 @@ export class ValidationExecutor {
           object: object,
           value: value,
           constraints: metadata.constraints,
+          arguments: metadata.constraints
         };
 
         if (!metadata.each || !(Array.isArray(value) || value instanceof Set || value instanceof Map)) {
@@ -274,6 +278,8 @@ export class ValidationExecutor {
               if (!isValid) {
                 const [type, message] = this.createValidationError(object, value, metadata, customConstraintMetadata);
                 error.constraints[type] = message;
+                // 新增
+                validationArguments.arguments && (error.arguments[type] = validationArguments.arguments);
                 if (metadata.context) {
                   if (!error.contexts) {
                     error.contexts = {};
@@ -287,6 +293,8 @@ export class ValidationExecutor {
             if (!validatedValue) {
               const [type, message] = this.createValidationError(object, value, metadata, customConstraintMetadata);
               error.constraints[type] = message;
+              // 新增
+              validationArguments.arguments && (error.arguments[type] = validationArguments.arguments);
             }
           }
 
@@ -314,6 +322,8 @@ export class ValidationExecutor {
               if (!validationResult) {
                 const [type, message] = this.createValidationError(object, value, metadata, customConstraintMetadata);
                 error.constraints[type] = message;
+                // 新增
+                validationArguments.arguments && (error.arguments[type] = validationArguments.arguments);
                 if (metadata.context) {
                   if (!error.contexts) {
                     error.contexts = {};
@@ -333,6 +343,8 @@ export class ValidationExecutor {
         if (!validationResult) {
           const [type, message] = this.createValidationError(object, value, metadata, customConstraintMetadata);
           error.constraints[type] = message;
+          // 新增
+          metadata.arguments && (error.arguments[type] = metadata.arguments);
         }
       });
     });
@@ -366,6 +378,8 @@ export class ValidationExecutor {
       } else {
         const [type, message] = this.createValidationError(metadata.target as object, value, metadata);
         error.constraints[type] = message;
+        // 新增
+        metadata.arguments && (error.arguments[type] = metadata.constraints);
       }
     });
   }
@@ -406,6 +420,7 @@ export class ValidationExecutor {
       object: object,
       value: value,
       constraints: metadata.constraints,
+      arguments: metadata.constraints,
     };
 
     let message = metadata.message || '';
@@ -426,4 +441,6 @@ export class ValidationExecutor {
     const type = customValidatorMetadata && customValidatorMetadata.name ? customValidatorMetadata.name : metadata.type;
     return type;
   }
+
+  private for
 }

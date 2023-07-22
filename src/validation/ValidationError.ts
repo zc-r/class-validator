@@ -41,6 +41,13 @@ export class ValidationError {
   };
 
   /**
+   * 注解传入的参数条件
+   */
+  arguments?: {
+    [type: string]: any;
+  }
+
+  /**
    *
    * @param shouldDecorate decorate the message with ANSI formatter escape codes for better readability
    * @param hasParent true when the error is a child of an another one
