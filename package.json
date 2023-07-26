@@ -1,7 +1,7 @@
 {
-  "name": "class-validator",
-  "version": "0.14.0",
-  "description": "Decorator-based property validation for classes.",
+  "name": "manic-class-validator",
+  "version": "0.1.0",
+  "description": "基于class-validator的二次封装，追加额外的功能。",
   "author": "TypeStack contributors",
   "license": "MIT",
   "sideEffects": false,
