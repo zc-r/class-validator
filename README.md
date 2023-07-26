@@ -1,9 +1,11 @@
 # manic-class-validator
 
-> 本项目从为[`class-validator`](https://github.com/typestack/class-validator)Fork出来的，其中追加一些新的功能逻辑，慢慢完善...  
-> 详细变更日志: [CHANGELOG](./change.md)
+> 本项目从为[`class-validator`](https://github.com/typestack/class-validator)Fork出来的，其中追加一些新的功能逻辑。  
 
 官方原插件地址，请参阅[`class-validator`](https://github.com/typestack/class-validator)。
+
+## 追加功能
+- [x] 在原本ValidationError返回值中，添加`arguments`属性，记录转换message前的参数内容。
 
 ## Table of Contents
 
